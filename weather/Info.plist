@@ -64,12 +64,12 @@
 	</array>
     
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Description</string>
+    <string>We need to know your current location to get the weather details</string>
 
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Description</string>
+    <string>We need to know your current location to get the weather details</string>
 
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>Description</string>
+    <string>We need to know your current location to get the weather details</string>
 </dict>
 </plist>

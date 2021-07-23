@@ -21,30 +21,24 @@ class WeatherAPI {
             "appId": appId
         ] as [String: Any]
         
-        let req = AF.request(apiURL,
-                   method: .get,
-                   parameters: parameters,
-                   headers: nil)
-            
-            
-        req.validate()
-        .responseDecodable(of: WeatherStatusResponse.self) { (response) in
-            guard let status = response.value else {return}
-            completion(status)
-        }
+        getWeather(from: parameters, completion: completion)
     }
+    
+    
     
     static func getWeather(for address: String, completion: @escaping (WeatherStatusResponse)->Void) {
         let parameters = [
             "q" : address,
             "appId": appId
         ]
-        
+        getWeather(from: parameters, completion: completion)
+    }
+    
+    private static func getWeather(from parameters: [String: Any], completion: @escaping (WeatherStatusResponse)->Void) {
         let req = AF.request(apiURL,
                    method: .get,
                    parameters: parameters,
                    headers: nil)
-            
             
         req.validate()
         .responseDecodable(of: WeatherStatusResponse.self) { (response) in

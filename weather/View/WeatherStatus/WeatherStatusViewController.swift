@@ -7,8 +7,18 @@
 
 import UIKit
 
+struct WeatherData {
+    var place, condition, tmp, tmpLow, tmpHigh, hum, pressure, feelsLike: String
+}
+
+protocol WeatherStatusViewProtocol {
+    func fillData(with: WeatherData)
+}
+
 class WeatherStatusViewController: UIViewController {
 
+    
+    var presenter = WeatherStatusPresenter()
     var status: WeatherStatusResponse?
     
     @IBOutlet weak var lblPlace: UILabel!
@@ -18,30 +28,29 @@ class WeatherStatusViewController: UIViewController {
     @IBOutlet weak var lblLow: UILabel!
     @IBOutlet weak var lblPressure: UILabel!
     @IBOutlet weak var lblHumidity: UILabel!
-    
     @IBOutlet weak var lblFeelsLike: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let weather = status {
-            self.lblPlace.text = weather.name
-            if weather.weather.count > 0 {
-                self.lblCondition.text = weather.weather[0].main
-            }
-            self.lblTemp.text = toFehr(weather.main.temp)
-            self.lblLow.text = toFehr(weather.main.tempMin)
-            self.lblHigh.text = toFehr(weather.main.tempMax)
-            self.lblHumidity.text = String(weather.main.humidity)
-            self.lblPressure.text = String(weather.main.pressure)
-            self.lblFeelsLike.text = toFehr(weather.main.feelsLike)
+            presenter.inject(view: self, model: weather)
         }
     }
+}
+
+
+extension WeatherStatusViewController: WeatherStatusViewProtocol {
     
-    
-    func toFehr(_ kelvin: Double)-> String {
-        return String(format: "%.2f", (kelvin - 273.15) * 9/5 + 32)
+    func fillData(with weather: WeatherData) {
+        self.lblPlace.text = weather.place
+        self.lblCondition.text = weather.condition
+        self.lblTemp.text = weather.tmp
+        self.lblLow.text = weather.tmpLow
+        self.lblHigh.text = weather.tmpHigh
+        self.lblHumidity.text = weather.hum
+        self.lblPressure.text = weather.pressure
+        self.lblFeelsLike.text = weather.feelsLike
     }
     
-   
 }

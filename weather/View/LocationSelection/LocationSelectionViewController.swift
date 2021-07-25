@@ -34,11 +34,19 @@ class LocationSelectionViewController: UIViewController {
         super.viewDidLoad()
         tableViewSuggestions.tableFooterView = UIView()
         self.presenter.inject(view: self)
-        self.txtFieldLocation.delegate = self
-
     }
     
     
+    @IBAction func locationTextFieldChanged(_ sender: UITextField) {
+        if sender == txtFieldLocation {
+            if sender.text!.count > 0 {
+                self.enableShowButton(true)
+                self.presenter.searchTextChanged(to: sender.text!)
+            }else{
+                self.enableShowButton(false)
+            }
+        }
+    }
     @IBAction func btnShowTapped(_ sender: UIButton) {
         if let locationText = txtFieldLocation.attributedText, locationText.string.count > 0 {
             self.presenter.showResult(for: locationText)
@@ -48,16 +56,6 @@ class LocationSelectionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? WeatherStatusViewController {
             vc.status = self.selectedWeather
-        }
-    }
-}
-
-extension LocationSelectionViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.txtFieldLocation, textField.text!.count > 0 {
-            enableShowButton(true)
-        }else {
-            enableShowButton(false)
         }
     }
 }

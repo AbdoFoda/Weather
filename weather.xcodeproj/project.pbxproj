@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B307DE726ACC2DE0032FED9 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DE626ACC2DE0032FED9 /* Trie.swift */; };
+		2B307DE826ACD0990032FED9 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DE626ACC2DE0032FED9 /* Trie.swift */; };
+		2B307DEA26ACE6CE0032FED9 /* CitiesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DE926ACE6CE0032FED9 /* CitiesResponseModel.swift */; };
+		2B307DEC26ACE76C0032FED9 /* CitiesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DEB26ACE76C0032FED9 /* CitiesAPI.swift */; };
+		2B307DEF26ACE9C10032FED9 /* CitiesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DEB26ACE76C0032FED9 /* CitiesAPI.swift */; };
+		2B307DF026ACE9C50032FED9 /* CitiesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B307DE926ACE6CE0032FED9 /* CitiesResponseModel.swift */; };
 		2B346E3D26AAEB68009F3602 /* LocaionSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B346E3C26AAEB68009F3602 /* LocaionSelectionPresenter.swift */; };
 		2B346E4026AB0E1D009F3602 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B346E3F26AB0E1D009F3602 /* WeatherAPI.swift */; };
 		2B346E4226AB14BE009F3602 /* WeatherStatusResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B346E4126AB14BE009F3602 /* WeatherStatusResponseModel.swift */; };
@@ -54,6 +60,9 @@
 
 /* Begin PBXFileReference section */
 		16D28EA28B2801A9431AC0A3 /* Pods-weatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weatherTests.debug.xcconfig"; path = "Target Support Files/Pods-weatherTests/Pods-weatherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B307DE626ACC2DE0032FED9 /* Trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		2B307DE926ACE6CE0032FED9 /* CitiesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesResponseModel.swift; sourceTree = "<group>"; };
+		2B307DEB26ACE76C0032FED9 /* CitiesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesAPI.swift; sourceTree = "<group>"; };
 		2B346E3C26AAEB68009F3602 /* LocaionSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaionSelectionPresenter.swift; sourceTree = "<group>"; };
 		2B346E3F26AB0E1D009F3602 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		2B346E4126AB14BE009F3602 /* WeatherStatusResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStatusResponseModel.swift; sourceTree = "<group>"; };
@@ -113,11 +122,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B346E3E26AB0E05009F3602 /* Network */ = {
+		2B307DE526ACC2C80032FED9 /* AutoComplete */ = {
+			isa = PBXGroup;
+			children = (
+				2B307DE626ACC2DE0032FED9 /* Trie.swift */,
+			);
+			path = AutoComplete;
+			sourceTree = "<group>";
+		};
+		2B307DED26ACE7710032FED9 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
 				2B346E3F26AB0E1D009F3602 /* WeatherAPI.swift */,
 				2B346E4126AB14BE009F3602 /* WeatherStatusResponseModel.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		2B307DEE26ACE77B0032FED9 /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				2B307DE926ACE6CE0032FED9 /* CitiesResponseModel.swift */,
+				2B307DEB26ACE76C0032FED9 /* CitiesAPI.swift */,
+			);
+			path = Cities;
+			sourceTree = "<group>";
+		};
+		2B346E3E26AB0E05009F3602 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2B307DED26ACE7710032FED9 /* Weather */,
+				2B307DEE26ACE77B0032FED9 /* Cities */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -214,6 +249,7 @@
 		2B55B2BB26AAE20400D99894 /* LocationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				2B307DE526ACC2C80032FED9 /* AutoComplete */,
 				2B346E4926AB5C46009F3602 /* Mock */,
 				2B55B28E26A84AA000D99894 /* LocationSelectionViewController.swift */,
 				2B55B2BC26AAE22300D99894 /* LocationTableViewCell.swift */,
@@ -483,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B307DE726ACC2DE0032FED9 /* Trie.swift in Sources */,
 				2B55B28F26A84AA000D99894 /* LocationSelectionViewController.swift in Sources */,
 				2B55B28B26A84AA000D99894 /* AppDelegate.swift in Sources */,
 				2B55B2BD26AAE22300D99894 /* LocationTableViewCell.swift in Sources */,
@@ -491,8 +528,10 @@
 				2B346E4026AB0E1D009F3602 /* WeatherAPI.swift in Sources */,
 				2B346E4B26AB5C54009F3602 /* LocationSelectionMockView.swift in Sources */,
 				2B346E4526AB1633009F3602 /* WeatherStatusViewController.swift in Sources */,
+				2B307DEA26ACE6CE0032FED9 /* CitiesResponseModel.swift in Sources */,
 				2B55B28D26A84AA000D99894 /* SceneDelegate.swift in Sources */,
 				2B346E3D26AAEB68009F3602 /* LocaionSelectionPresenter.swift in Sources */,
+				2B307DEC26ACE76C0032FED9 /* CitiesAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,11 +541,14 @@
 			files = (
 				2B346E4D26AB5E95009F3602 /* LocaionSelectionPresenter.swift in Sources */,
 				2B346E4C26AB5D69009F3602 /* LocationSelectionMockView.swift in Sources */,
+				2B307DEF26ACE9C10032FED9 /* CitiesAPI.swift in Sources */,
 				2B346E5226AB5EC9009F3602 /* LocationTableViewCell.swift in Sources */,
 				2B346E4E26AB5E9D009F3602 /* WeatherStatusResponseModel.swift in Sources */,
 				2B346E5326AB5EDA009F3602 /* WeatherStatusPresenter.swift in Sources */,
+				2B307DE826ACD0990032FED9 /* Trie.swift in Sources */,
 				2B346E5026AB5EBC009F3602 /* WeatherAPI.swift in Sources */,
 				2B346E5126AB5EC5009F3602 /* WeatherStatusViewController.swift in Sources */,
+				2B307DF026ACE9C50032FED9 /* CitiesResponseModel.swift in Sources */,
 				2B55B2A226A84AA100D99894 /* weatherTests.swift in Sources */,
 				2B346E4F26AB5EAC009F3602 /* LocationSelectionViewController.swift in Sources */,
 			);

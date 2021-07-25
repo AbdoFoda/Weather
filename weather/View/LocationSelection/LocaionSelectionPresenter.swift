@@ -16,6 +16,10 @@ class LocationSelectionPresenter: NSObject {
     let currentLocation = NSAttributedString(string: "Current Location", attributes: [.foregroundColor: UIColor.blue])
     var lastRecordedLocation: CLLocation?
     
+    var allPlaces = [String]()
+    var trieStructure = Trie()
+    var curSuggestions = [String]()
+    
     func inject(view: LocationSelectionViewProtocol) {
         self.view = view
         self.view?.updateSuggestions(locations: [currentLocation])
@@ -27,6 +31,37 @@ class LocationSelectionPresenter: NSObject {
         self.locationManager = CLLocationManager()
         self.locationManager?.delegate = self
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        self.getPlacesData()
+    }
+    
+    private func getPlacesData() {
+        CitiesAPI.getCities { placesData in
+            for place in placesData.data {
+                self.allPlaces.append(place.country)
+                self.allPlaces.append(contentsOf: place.cities)
+            }
+            self.loadDataToTrie()
+        }
+    }
+    
+    private func loadDataToTrie() {
+        for place in allPlaces {
+            self.trieStructure.insert(word: place, curNode: &self.trieStructure.head)
+        }
+    }
+    
+    private func getSuggestion(for prefix: String) -> [String]{
+        curSuggestions = self.trieStructure.match(prefix: prefix)
+        return curSuggestions
+    }
+    
+    func searchTextChanged(to txt: String) {
+        var ans = [currentLocation]
+        let suggestions = getSuggestion(for: txt)
+        for place in suggestions {
+            ans.append(NSAttributedString(string: place))
+        }
+        self.view?.updateSuggestions(locations: ans)
     }
     
     func getCurrentLocation() {
@@ -40,6 +75,8 @@ class LocationSelectionPresenter: NSObject {
         if index == 0 {
             self.view?.confirmLocation(location: currentLocation)
             self.getCurrentLocation()
+        }else {
+            self.view?.confirmLocation(location: NSAttributedString(string: self.curSuggestions[index - 1]))
         }
         self.view?.enableShowButton(true)
     }
